@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GardenSolutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Urbanist:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-stack" aria-hidden="true">
+      <video class="bg-video" id="bgVideo" autoplay muted loop playsinline preload="auto"></video>
+      <div class="bg-image" id="bgImage"></div>
+      <div class="bg-overlay"></div>
+      <div class="bg-vignette"></div>
+    </div>
+
+    <main class="shell">
+      <header class="top">
+        <h1 class="brand top-brand">GardenSolutions</h1>
+        <p class="brand-sub top-brand-sub">Exkluzív kertek tervezése, gondozása és szezonális megújítása</p>
+        <nav class="menu" aria-label="Fő menü">
+          <button class="menu-item is-active" data-key="maintenance">
+            <span class="menu-thumb" aria-hidden="true"></span>
+            <span class="menu-label">Kertfenntartás</span>
+          </button>
+          <button class="menu-item" data-key="mowing">
+            <span class="menu-thumb" aria-hidden="true"></span>
+            <span class="menu-label">Fűnyírás</span>
+          </button>
+          <button class="menu-item" data-key="hedges">
+            <span class="menu-thumb" aria-hidden="true"></span>
+            <span class="menu-label">Sövénynyírás</span>
+          </button>
+          <button class="menu-item" data-key="irrigation">
+            <span class="menu-thumb" aria-hidden="true"></span>
+            <span class="menu-label">Öntözőrendszer</span>
+          </button>
+        </nav>
+      </header>
+
+      <section class="panel" aria-live="polite">
+        <p class="eyebrow" id="eyebrow">Prémium kerti szolgáltatás</p>
+        <h2 class="panel-title" id="panelTitle">Kertfenntartás</h2>
+        <p class="panel-description" id="panelDescription">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ez egy helykitöltő magyar mintaszöveg,
+          amely a végleges tartalom helyét tartja fenn a bemutató oldalon.
+        </p>
+        <p class="panel-description panel-description-secondary" id="panelDescriptionSecondary">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere, nunc ut dictum fringilla,
+          eros velit facilisis metus, eu faucibus nisl est in augue. Nam eget nibh non lectus posuere varius.
+        </p>
+        <ul class="service-points" id="servicePoints">
+          <li>Precíz ütemezés és rendszeres helyszíni jelenlét</li>
+          <li>Professzionális géppark és diszkrét kivitelezés</li>
+          <li>Egyedi szezonális gondozási terv</li>
+        </ul>
+        <div class="panel-actions">
+          <button class="order-btn" id="orderButton" type="button">Megrendelés</button>
+          <button class="ghost-btn" id="quoteButton" type="button">Ajánlatkérés</button>
+          <span class="trust-badge" id="trustBadge">Válasz 24 órán belül</span>
+        </div>
+      </section>
+
+      <section class="brand-showcase" aria-label="Márka üzenet">
+        <h1 class="brand">GardenSolutions</h1>
+        <p class="brand-sub">Ahol a kert nemcsak szép, hanem karakter is.</p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
