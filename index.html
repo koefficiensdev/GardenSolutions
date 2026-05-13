@@ -3,76 +3,167 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GardenSolutions</title>
+    <title>Art Garden Design</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Urbanist:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="background-stack" aria-hidden="true">
-      <video class="bg-video" id="bgVideo" autoplay muted loop playsinline preload="auto"></video>
-      <div class="bg-image" id="bgImage"></div>
-      <div class="bg-overlay"></div>
-      <div class="bg-vignette"></div>
-    </div>
-
-    <main class="shell">
-      <header class="top">
-        <h1 class="brand top-brand">GardenSolutions</h1>
-        <p class="brand-sub top-brand-sub">Exkluzív kertek tervezése, gondozása és szezonális megújítása</p>
-        <nav class="menu" aria-label="Fő menü">
-          <button class="menu-item is-active" data-key="maintenance">
-            <span class="menu-thumb" aria-hidden="true"></span>
-            <span class="menu-label">Kertfenntartás</span>
-          </button>
-          <button class="menu-item" data-key="mowing">
-            <span class="menu-thumb" aria-hidden="true"></span>
-            <span class="menu-label">Fűnyírás</span>
-          </button>
-          <button class="menu-item" data-key="hedges">
-            <span class="menu-thumb" aria-hidden="true"></span>
-            <span class="menu-label">Sövénynyírás</span>
-          </button>
-          <button class="menu-item" data-key="irrigation">
-            <span class="menu-thumb" aria-hidden="true"></span>
-            <span class="menu-label">Öntözőrendszer</span>
-          </button>
+    <main class="mobile-page">
+      <header class="site-header" aria-label="Fo menu">
+        <a class="site-brand" href="#">ArtGarden</a>
+        <nav class="site-menu">
+  
+          <a href="#services">Szolgaltatasok</a>
+          <a href="#">Referenciak</a>
+          <a href="#">Kapcsolat</a>
+         
         </nav>
+        <button class="site-header-cta quote-trigger" type="button">Ajanlatkeres</button>
       </header>
 
-      <section class="panel" aria-live="polite">
-        <p class="eyebrow" id="eyebrow">Prémium kerti szolgáltatás</p>
-        <h2 class="panel-title" id="panelTitle">Kertfenntartás</h2>
-        <p class="panel-description" id="panelDescription">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ez egy helykitöltő magyar mintaszöveg,
-          amely a végleges tartalom helyét tartja fenn a bemutató oldalon.
-        </p>
-        <p class="panel-description panel-description-secondary" id="panelDescriptionSecondary">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere, nunc ut dictum fringilla,
-          eros velit facilisis metus, eu faucibus nisl est in augue. Nam eget nibh non lectus posuere varius.
-        </p>
-        <ul class="service-points" id="servicePoints">
-          <li>Precíz ütemezés és rendszeres helyszíni jelenlét</li>
-          <li>Professzionális géppark és diszkrét kivitelezés</li>
-          <li>Egyedi szezonális gondozási terv</li>
-        </ul>
-        <div class="panel-actions">
-          <button class="order-btn" id="orderButton" type="button">Megrendelés</button>
-          <button class="ghost-btn" id="quoteButton" type="button">Ajánlatkérés</button>
-          <span class="trust-badge" id="trustBadge">Válasz 24 órán belül</span>
+      <section class="hero" aria-label="Art Garden bevezető">
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <header class="hero-header">
+          <a class="logo-wrap" href="#" aria-label="Art Garden kezdolap">
+            <img src="assets/icons/logo-leaf.svg" alt="Art Garden logo" class="logo-icon" />
+            <span class="logo-text">ArtGarden</span>
+          </a>
+          <button class="hamburger" id="hamburgerButton" type="button" aria-label="Menu megnyitasa">
+            <span></span><span></span><span></span>
+          </button>
+        </header>
+
+        <div class="hero-content">
+          <h1 class="hero-title">Art Garden</h1>
+          <p class="hero-design-line">
+            <span class="line"></span>
+            <span class="design-word">Design</span>
+            <span class="line"></span>
+          </p>
+          <img src="assets/icons/ic-leaf-mini.svg" alt="" class="mini-leaf" aria-hidden="true" />
+          <p class="hero-tagline">Luxus. Harmonia. Az On kertje.</p>
+          <button class="cta quote-trigger" id="quoteCta" type="button">Ajanlatkeres <span class="arrow">&#8594;</span></button>
         </div>
       </section>
 
-      <section class="brand-showcase" aria-label="Márka üzenet">
-        <h1 class="brand">GardenSolutions</h1>
-        <p class="brand-sub">Ahol a kert nemcsak szép, hanem karakter is.</p>
+      <section class="services-sheet" id="services">
+        <article class="service-card">
+          <button class="service-toggle" type="button" aria-expanded="false">
+            <img src="assets/icons/ic-landscape.svg" alt="Kertepites ikon" class="service-icon" />
+            <div class="service-copy">
+              <h2>Kertepites</h2>
+              <p>Egyedi kertek tervezese es kivitelezese</p>
+            </div>
+            <span class="chevron" aria-hidden="true">&#8250;</span>
+          </button>
+          <div class="service-panel" aria-hidden="true">
+            <p>Egyedi koncepcio, 3D latvanyterv, novenyvalasztas, burkolatok, fenyek es kivitelezesi menetrend egy kezben.</p>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <button class="service-toggle" type="button" aria-expanded="false">
+            <img src="assets/icons/ic-water.svg" alt="Automata ontozes ikon" class="service-icon" />
+            <div class="service-copy">
+              <h2>Automata Ontozes</h2>
+              <p>Okos ontozorendszerek telepitese</p>
+            </div>
+            <span class="chevron" aria-hidden="true">&#8250;</span>
+          </button>
+          <div class="service-panel" aria-hidden="true">
+            <p>Zonankent szabalyzott ontozes, idojaras alapu vezerles, szezonkezdo beallitas es rendszeres ellenorzes.</p>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <button class="service-toggle" type="button" aria-expanded="false">
+            <img src="assets/icons/ic-pruning.svg" alt="Kertfenntartas ikon" class="service-icon" />
+            <div class="service-copy">
+              <h2>Kertfenntartas</h2>
+              <p>Rendszeres es szakszeru kertgondozas</p>
+            </div>
+            <span class="chevron" aria-hidden="true">&#8250;</span>
+          </button>
+          <div class="service-panel" aria-hidden="true">
+            <p>Fu, cserjek, sovenyek, talajtapanyag, betegsegmegelozes es heti vagy ketheti fenntartasi csomagok.</p>
+          </div>
+        </article>
+
+        <article class="service-card">
+          <button class="service-toggle" type="button" aria-expanded="false">
+            <img src="assets/icons/ic-contact.svg" alt="Kapcsolat ikon" class="service-icon" />
+            <div class="service-copy">
+              <h2>Kapcsolat</h2>
+              <p>Vegye fel velunk a kapcsolatot</p>
+            </div>
+            <span class="chevron" aria-hidden="true">&#8250;</span>
+          </button>
+          <div class="service-panel" aria-hidden="true">
+            <p>Telefon, e-mail vagy helyszini konzultacio. 24 oran belul valaszolunk es szemelyre szabott ajanlatot adunk.</p>
+          </div>
+        </article>
+
+        <section class="trust-row" aria-label="Minosegi igeretek">
+          <div class="trust-item">
+            <img src="assets/icons/ic-shield.svg" alt="Premium minoseg" />
+            <p>Premium minoseg</p>
+          </div>
+          <div class="trust-item">
+            <img src="assets/icons/ic-harmony.svg" alt="Termeszetes harmonia" />
+            <p>Termeszetes harmonia</p>
+          </div>
+          <div class="trust-item">
+            <img src="assets/icons/ic-badge.svg" alt="Megbizhato szakertelem" />
+            <p>Megbizhato szakertelem</p>
+          </div>
+        </section>
       </section>
     </main>
 
-    <script src="script.js"></script>
+    <div class="quote-modal" id="quoteModal" aria-hidden="true">
+      <div class="quote-modal-backdrop" data-close="modal"></div>
+      <section class="quote-dialog" role="dialog" aria-modal="true" aria-labelledby="quoteTitle">
+        <header class="quote-dialog-head">
+          <h2 id="quoteTitle">Ajanlatkeres</h2>
+          <button class="quote-close" id="quoteClose" type="button" aria-label="Ajanlatkeres bezarasa">&times;</button>
+        </header>
+
+        <form class="quote-form" id="quoteForm">
+          <label>
+            Nev
+            <input id="quoteName" name="name" type="text" required />
+          </label>
+          <label>
+            Email
+            <input id="quoteEmail" name="email" type="email" required />
+          </label>
+          <label>
+            Telefonszam
+            <input id="quotePhone" name="phone" type="tel" required />
+          </label>
+          <label>
+            Leiras
+            <textarea id="quoteDescription" name="description" rows="4" required></textarea>
+          </label>
+          <label>
+            Kertezes kepek feltoltese (max 8 kep)
+            <input id="quoteImages" name="images" type="file" accept="image/*" multiple />
+          </label>
+
+          <div class="quote-preview" id="quotePreview"></div>
+          <p class="quote-note">Adatait helyben is mentjuk piszkozatkent, kuldeskor az ajanlatkeres Firestore-ba kerul, a kepek pedig a keres sajat Firestore kepek almappajaba is.</p>
+          <p class="quote-status" id="quoteStatus" aria-live="polite"></p>
+
+          <button id="quoteSubmit" type="submit">Keres kuldese</button>
+        </form>
+      </section>
+    </div>
+
+    <script type="module" src="script.js"></script>
   </body>
 </html>

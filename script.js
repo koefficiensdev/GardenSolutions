@@ -1,211 +1,330 @@
-const sections = {
-  maintenance: {
-    label: "Prémium kerti szolgáltatás",
-    title: "Kertfenntartás",
-    trust: "Válasz 24 órán belül",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ez egy rövidebb mintaszöveg, amely a kertfenntartási szolgáltatás lényegét tömören mutatja be.",
-    descriptionSecondary:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat metus nec elementum dignissim.",
-    points: [
-      "Precíz ütemezés és rendszeres helyszíni jelenlét",
-      "Professzionális géppark és diszkrét kivitelezés",
-      "Egyedi szezonális gondozási terv"
-    ],
-    thumbSrc:
-      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=500&q=80",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1920&q=80",
-    mediaType: "video",
-    mediaSrc:
-      "https://cdn.pixabay.com/video/2020/04/27/37488-413124869_large.mp4"
-  },
-  mowing: {
-    label: "Rendezett gyep",
-    title: "Fűnyírás",
-    trust: "Fix időablakos kiszállás",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ez a helykitöltő szöveg a rendszeres fűnyírás és gyepápolás bemutatására szolgál. Integer sed hendrerit magna, ac facilisis neque. Morbi vel nunc id ipsum fringilla feugiat.",
-    descriptionSecondary:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mattis volutpat sem, vel dignissim lorem malesuada sed. Praesent a lorem at odio gravida placerat et nec justo.",
-    points: [
-      "Sávmentes, egyenletes vágáskép minden alkalommal",
-      "Élszegés és tiszta befejező munkák",
-      "Szezonális gyepkondícióhoz igazított ütemezés"
-    ],
-    thumbSrc:
-      "https://images.unsplash.com/photo-1621955249225-6b29c5f9304e?auto=format&fit=crop&w=500&q=80",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1621955249225-6b29c5f9304e?auto=format&fit=crop&w=1920&q=80",
-    mediaType: "video",
-    mediaSrc:
-      "https://cdn.pixabay.com/video/2022/07/31/126088-734348930_large.mp4"
-  },
-  hedges: {
-    label: "Precíz forma",
-    title: "Sövénynyírás",
-    trust: "Formavágás prémium minőségben",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ez a minta szöveg a sövények formára vágását és esztétikus kerti vonalvezetést szemlélteti. Maecenas sollicitudin, nisl id volutpat cursus, enim nunc egestas purus, non porta mi ipsum vitae lacus.",
-    descriptionSecondary:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Sed at gravida turpis. Vivamus pretium erat eu sem cursus, non venenatis lacus gravida.",
-    points: [
-      "Geometrikus és organikus formák pontos kivitelezése",
-      "Egészséges visszavágási ritmus fajta szerint",
-      "Tiszta munkaterület és azonnali elszállítás"
-    ],
-    thumbSrc:
-      "https://images.unsplash.com/photo-1599685315640-3eb587f77f7b?auto=format&fit=crop&w=500&q=80",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1599685315640-3eb587f77f7b?auto=format&fit=crop&w=1920&q=80",
-    mediaType: "video",
-    mediaSrc:
-      "https://cdn.pixabay.com/video/2022/05/31/119172-716826901_large.mp4"
-  },
-  irrigation: {
-    label: "Okos vízellátás",
-    title: "Öntözőrendszer",
-    trust: "Hatékony vízhasználat, kontrollált működés",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ez a helykitöltő bekezdés az automata öntözőrendszer tervezését és beállítását mutatja be. Cras rutrum dolor ac nibh luctus, sed rhoncus libero placerat.",
-    descriptionSecondary:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Nam mollis, odio vitae luctus suscipit, mauris mauris convallis sapien, et eleifend neque tortor id ipsum.",
-    points: [
-      "Zónákra bontott, növényigényhez hangolt beállítás",
-      "Automatizált időzítés időjárásfüggő logikával",
-      "Szezonzáró és tavaszi rendszerellenőrzés"
-    ],
-    thumbSrc:
-      "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=500&q=80",
-    fallbackImage:
-      "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1920&q=80",
-    mediaType: "video",
-    mediaSrc:
-      "https://cdn.pixabay.com/video/2021/08/04/83672-583342127_large.mp4"
+import {
+  clearDraft,
+  fileToDataUrl,
+  getDraft,
+  saveRequestImages,
+  saveDraft
+} from "./local-db.js";
+import { auth, db } from "./firebase-client.js";
+import {
+  addDoc,
+  collection,
+  doc,
+  setDoc,
+  updateDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+import {
+  signInAnonymously,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+const quoteTriggers = document.querySelectorAll(".quote-trigger");
+const hamburgerButton = document.getElementById("hamburgerButton");
+const serviceCards = document.querySelectorAll(".service-card");
+const serviceToggles = document.querySelectorAll(".service-toggle");
+const hero = document.querySelector(".hero");
+
+const quoteModal = document.getElementById("quoteModal");
+const quoteClose = document.getElementById("quoteClose");
+const quoteForm = document.getElementById("quoteForm");
+const quoteName = document.getElementById("quoteName");
+const quoteEmail = document.getElementById("quoteEmail");
+const quotePhone = document.getElementById("quotePhone");
+const quoteDescription = document.getElementById("quoteDescription");
+const quoteImages = document.getElementById("quoteImages");
+const quotePreview = document.getElementById("quotePreview");
+const quoteSubmit = document.getElementById("quoteSubmit");
+const quoteStatus = document.getElementById("quoteStatus");
+let publicAuthReady = null;
+
+function ensurePublicAuth() {
+  if (auth.currentUser) {
+    return Promise.resolve(auth.currentUser);
   }
-};
 
-const menuButtons = document.querySelectorAll(".menu-item");
-const panel = document.querySelector(".panel");
-const eyebrow = document.getElementById("eyebrow");
-const panelTitle = document.getElementById("panelTitle");
-const panelDescription = document.getElementById("panelDescription");
-const panelDescriptionSecondary = document.getElementById("panelDescriptionSecondary");
-const servicePoints = document.getElementById("servicePoints");
-const orderButton = document.getElementById("orderButton");
-const quoteButton = document.getElementById("quoteButton");
-const trustBadge = document.getElementById("trustBadge");
-const bgVideo = document.getElementById("bgVideo");
-const bgImage = document.getElementById("bgImage");
-let activeSectionKey = "maintenance";
-
-menuButtons.forEach((button) => {
-  const key = button.dataset.key;
-  const section = sections[key];
-
-  if (section?.thumbSrc) {
-    button.style.setProperty("--thumb-image", `url('${section.thumbSrc}')`);
+  if (publicAuthReady) {
+    return publicAuthReady;
   }
-});
 
-function updateSection(key) {
-  const section = sections[key];
+  publicAuthReady = new Promise((resolve, reject) => {
+    const stop = onAuthStateChanged(
+      auth,
+      (user) => {
+        if (user) {
+          stop();
+          resolve(user);
+        }
+      },
+      (error) => {
+        stop();
+        reject(error);
+      }
+    );
 
-  if (!section) {
+    signInAnonymously(auth).catch((error) => {
+      stop();
+      reject(error);
+    });
+  }).finally(() => {
+    publicAuthReady = null;
+  });
+
+  return publicAuthReady;
+}
+
+function setQuoteStatus(message, isError = false) {
+  quoteStatus.textContent = message;
+  quoteStatus.style.color = isError ? "#9b2f2f" : "#355e3b";
+}
+
+function loadDraft() {
+  const draft = getDraft();
+  if (!draft) {
     return;
   }
 
-  activeSectionKey = key;
-
-  menuButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.key === key);
-  });
-
-  panel.classList.add("is-changing");
-
-  window.setTimeout(() => {
-    eyebrow.textContent = section.label;
-    panelTitle.textContent = section.title;
-    panelDescription.textContent = section.description;
-    panelDescriptionSecondary.textContent = section.descriptionSecondary;
-    trustBadge.textContent = section.trust;
-    servicePoints.innerHTML = "";
-
-    section.points.forEach((point) => {
-      const item = document.createElement("li");
-      item.textContent = point;
-      servicePoints.appendChild(item);
-    });
-
-    panel.classList.remove("is-changing");
-  }, 180);
-
-  if (section.mediaType === "video") {
-    const fallback = section.fallbackImage || section.thumbSrc;
-
-    if (fallback) {
-      bgImage.style.backgroundImage = `url('${fallback}')`;
-      bgImage.classList.add("is-on");
-    }
-
-    bgVideo.classList.remove("is-on");
-    bgVideo.pause();
-    bgVideo.onerror = null;
-    bgVideo.oncanplay = null;
-
-    bgVideo.src = section.mediaSrc;
-    bgVideo.load();
-
-    bgVideo.oncanplay = () => {
-      if (activeSectionKey !== key) {
-        return;
-      }
-
-      bgVideo.classList.add("is-on");
-      bgImage.classList.remove("is-on");
-    };
-
-    bgVideo.onerror = () => {
-      if (activeSectionKey !== key) {
-        return;
-      }
-
-      bgVideo.classList.remove("is-on");
-      bgImage.classList.add("is-on");
-    };
-
-    bgVideo.play().catch(() => {
-      if (activeSectionKey !== key) {
-        return;
-      }
-
-      bgVideo.classList.remove("is-on");
-      bgImage.classList.add("is-on");
-    });
-  } else {
-    bgImage.style.backgroundImage = `url('${section.mediaSrc}')`;
-    bgImage.classList.add("is-on");
-    bgVideo.classList.remove("is-on");
-    bgVideo.pause();
-  }
+  quoteName.value = draft.name || "";
+  quoteEmail.value = draft.email || "";
+  quotePhone.value = draft.phone || "";
+  quoteDescription.value = draft.description || "";
 }
 
-menuButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    updateSection(button.dataset.key);
+function renderImagePreview(files) {
+  quotePreview.innerHTML = "";
+
+  Array.from(files).slice(0, 8).forEach((file) => {
+    if (!file.type.startsWith("image/")) {
+      return;
+    }
+
+    const img = document.createElement("img");
+    img.alt = file.name;
+    img.src = URL.createObjectURL(file);
+    img.addEventListener("load", () => URL.revokeObjectURL(img.src), { once: true });
+    quotePreview.appendChild(img);
+  });
+}
+
+function openQuoteModal() {
+  quoteModal.classList.add("is-open");
+  quoteModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  loadDraft();
+}
+
+function closeQuoteModal() {
+  quoteModal.classList.remove("is-open");
+  quoteModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  setQuoteStatus("");
+}
+
+quoteTriggers.forEach((trigger) => {
+  trigger.addEventListener("click", openQuoteModal);
+});
+
+quoteClose?.addEventListener("click", closeQuoteModal);
+quoteModal?.addEventListener("click", (event) => {
+  const target = event.target;
+  if (target instanceof HTMLElement && target.dataset.close === "modal") {
+    closeQuoteModal();
+  }
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && quoteModal.classList.contains("is-open")) {
+    closeQuoteModal();
+  }
+});
+
+[quoteName, quoteEmail, quotePhone, quoteDescription].forEach((input) => {
+  input.addEventListener("input", () => {
+    saveDraft({
+      name: quoteName.value.trim(),
+      email: quoteEmail.value.trim(),
+      phone: quotePhone.value.trim(),
+      description: quoteDescription.value.trim()
+    });
   });
 });
 
-orderButton.addEventListener("click", () => {
-  orderButton.textContent = "Köszönjük, hamarosan jelentkezünk";
-  orderButton.disabled = true;
-  orderButton.classList.add("is-done");
+quoteImages?.addEventListener("change", () => {
+  renderImagePreview(quoteImages.files || []);
 });
 
-quoteButton.addEventListener("click", () => {
-  quoteButton.textContent = "Ajánlatkérés rögzítve";
-  quoteButton.disabled = true;
-  quoteButton.classList.add("is-done");
+quoteForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const files = Array.from(quoteImages.files || []).slice(0, 8);
+  const payloadBase = {
+    name: quoteName.value.trim(),
+    email: quoteEmail.value.trim(),
+    phone: quotePhone.value.trim(),
+    description: quoteDescription.value.trim(),
+    status: "under_consultation",
+    createdAtMs: Date.now(),
+    archivedAt: null
+  };
+
+  if (!payloadBase.name || !payloadBase.email || !payloadBase.phone || !payloadBase.description) {
+    setQuoteStatus("Toltson ki minden kotelezo mezot.", true);
+    return;
+  }
+
+  quoteSubmit.disabled = true;
+  setQuoteStatus("Keres kuldese folyamatban...");
+
+  try {
+    await ensurePublicAuth();
+
+    const requestId = crypto.randomUUID();
+    let uploadFailures = 0;
+    const uploadErrorCodes = new Set();
+    let firestoreImageCount = 0;
+    const uploadedImages = [];
+
+    await setDoc(doc(db, "requests", requestId), {
+      ...payloadBase,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+      imageCount: 0,
+      hasLocalImages: false,
+      localImageCount: 0
+    });
+
+    for (let i = 0; i < files.length; i += 1) {
+      const file = files[i];
+      if (!file.type.startsWith("image/")) continue;
+
+      const dataUrl = await fileToDataUrl(file);
+
+      const imagePayload = {
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        dataUrl
+      };
+
+      uploadedImages.push(imagePayload);
+
+      try {
+        await addDoc(collection(db, "requests", requestId, "images"), {
+          ...imagePayload,
+          createdAt: serverTimestamp()
+        });
+        firestoreImageCount += 1;
+      } catch (error) {
+        uploadFailures += 1;
+        if (error?.code) {
+          uploadErrorCodes.add(error.code);
+        }
+      }
+    }
+
+    await updateDoc(doc(db, "requests", requestId), {
+      updatedAt: serverTimestamp(),
+      imageCount: firestoreImageCount,
+      hasLocalImages: uploadedImages.length > 0,
+      localImageCount: uploadedImages.length
+    });
+
+    let localImageSaveFailed = false;
+    try {
+      saveRequestImages(requestId, uploadedImages);
+    } catch {
+      localImageSaveFailed = true;
+    }
+
+    clearDraft();
+    quoteForm.reset();
+    quotePreview.innerHTML = "";
+    if (uploadFailures > 0 && localImageSaveFailed) {
+      setQuoteStatus("Ajanlatkeres mentve, de nehany kep sem Firestore kepek almappaba, sem helyben nem kerult fel.", true);
+    } else if (uploadFailures > 0) {
+      if (uploadErrorCodes.has("permission-denied")) {
+        setQuoteStatus("Ajanlatkeres mentve, de a Firestore szabalyok tiltjak a kepek almappaba valo feltoltest.", true);
+      } else {
+        setQuoteStatus("Ajanlatkeres mentve, de nehany kep nem kerult fel a Firestore kepek almappaba.", true);
+      }
+    } else if (localImageSaveFailed) {
+      setQuoteStatus("Ajanlatkerese Firestore-ba mentve, de a kepek helyi mentese nem sikerult (valoszinuleg tarhelykorlat miatt).", true);
+    } else {
+      setQuoteStatus("Ajanlatkerese sikeresen rogzitve (adatok Firestore, kepek Firestore almappaban + helyben).");
+    }
+    window.setTimeout(closeQuoteModal, 850);
+  } catch (error) {
+    const code = error?.code || "";
+    if (code === "permission-denied") {
+      setQuoteStatus("A Firestore jogosultsagok nem engedik a kuldest (permission-denied).", true);
+    } else if (code === "auth/operation-not-allowed") {
+      setQuoteStatus("Az anonim bejelentkezes nincs engedelyezve Firebase-ben. Kapcsolja be az Authentication / Anonymous modot.", true);
+    } else if (code === "auth/admin-restricted-operation") {
+      setQuoteStatus("Az anonim bejelentkezes tiltva van a projektben. Engedelyezze az Anonymous providert.", true);
+    } else if (code === "unavailable") {
+      setQuoteStatus("A szolgaltatas atmenetileg nem elerheto. Probalkozzon ujra kesobb.", true);
+    } else {
+      setQuoteStatus("Hiba tortent kuldes kozben. Probalkozzon ujra.", true);
+    }
+  } finally {
+    quoteSubmit.disabled = false;
+  }
 });
 
-updateSection("maintenance");
+// Scroll reveal
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        window.setTimeout(() => {
+          el.classList.add("is-visible");
+        }, Number(delay));
+        revealObserver.unobserve(el);
+      }
+    });
+  },
+  { threshold: 0.12 }
+);
+
+document.querySelectorAll(".service-card").forEach((el, i) => {
+  el.dataset.delay = i * 80;
+  revealObserver.observe(el);
+});
+
+document.querySelectorAll(".trust-item").forEach((el, i) => {
+  el.dataset.delay = i * 100;
+  revealObserver.observe(el);
+});
+
+// Hero parallax (desktop only)
+function onScroll() {
+  if (window.innerWidth < 980 || !hero) return;
+  const scrollY = window.scrollY;
+  hero.style.backgroundPositionY = `calc(top + ${scrollY * 0.35}px)`;
+}
+window.addEventListener("scroll", onScroll, { passive: true });
+
+hamburgerButton?.addEventListener("click", () => {
+  hamburgerButton.classList.toggle("is-open");
+});
+
+serviceToggles.forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    const card = toggle.closest(".service-card");
+    const panel = card?.querySelector(".service-panel");
+
+    if (!card || !panel) {
+      return;
+    }
+
+    const isOpen = card.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    panel.setAttribute("aria-hidden", String(!isOpen));
+  });
+});
+
+serviceCards.forEach((card) => {
+  card.classList.remove("is-open");
+});

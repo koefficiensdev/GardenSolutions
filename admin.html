@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArtGarden Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Urbanist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <header class="admin-topbar">
+        <div>
+          <h1>ArtGarden Admin</h1>
+          <p>Ajanlatkeresek kezelese, statusz es kepek</p>
+        </div>
+        <button class="ghost" id="logoutButton" type="button" hidden>Kijelentkezes</button>
+      </header>
+
+      <section class="auth-panel" id="authPanel">
+        <h2 id="authTitle">Admin bejelentkezes</h2>
+        <p id="authHint">Adja meg az admin email es jelszo parost.</p>
+        <form id="authForm" class="stack-form">
+          <label id="adminNameWrap" hidden>
+            Admin nev
+            <input id="adminName" type="text" autocomplete="name" />
+          </label>
+          <label>
+            Email
+            <input id="authEmail" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            Jelszo
+            <input id="authPassword" type="password" autocomplete="current-password" minlength="6" required />
+          </label>
+          <button id="authSubmit" type="submit">Bejelentkezes</button>
+        </form>
+        <p class="admin-switch" id="adminSwitchHint">
+          Nincs admin account? Az elso betolteskor itt tudsz egyet letrehozni.
+        </p>
+        <p class="status-text" id="authStatus" aria-live="polite"></p>
+      </section>
+
+      <section class="requests-panel" id="requestsPanel" hidden>
+        <div class="requests-head">
+          <h2>Ajanlatkeresek</h2>
+          <p id="requestCount">0 nyitott kerelmi tetel</p>
+        </div>
+        <div id="requestsList" class="requests-list"></div>
+      </section>
+    </main>
+
+    <script type="module" src="admin.js"></script>
+  </body>
+</html>
