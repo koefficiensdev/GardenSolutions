@@ -14,24 +14,21 @@
   </head>
   <body>
     <main class="mobile-page">
-      <header class="site-header" aria-label="Fo menu">
-        <a class="site-brand" href="#">ArtGarden</a>
-        <nav class="site-menu">
-  
-          <a href="#services">Szolgaltatasok</a>
-          <a href="#">Referenciak</a>
-          <a href="#">Kapcsolat</a>
-         
-        </nav>
-        <button class="site-header-cta quote-trigger" type="button">Ajanlatkeres</button>
-      </header>
-
       <section class="hero" aria-label="Art Garden bevezető">
         <div class="hero-overlay" aria-hidden="true"></div>
+        
         <header class="hero-header">
           <a class="logo-wrap" href="#" aria-label="Art Garden kezdolap">
-            <img src="assets/icons/logo-leaf.svg" alt="Art Garden logo" class="logo-icon" />
-            <span class="logo-text">ArtGarden</span>
+            <div class="logo-icon">
+              <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 10 Q40 15 45 30 Q40 35 30 40 Q20 35 15 30 Q20 15 30 10" stroke="#d7ba81" fill="none" stroke-width="1.5"/>
+                <path d="M28 25 L32 25 M28 28 L32 28 M28 31 L32 31" stroke="#d7ba81" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <span class="logo-name">ArtGarden</span>
+              <span class="logo-design">DESIGN</span>
+            </div>
           </a>
           <button class="hamburger" id="hamburgerButton" type="button" aria-label="Menu megnyitasa">
             <span></span><span></span><span></span>
@@ -39,73 +36,85 @@
         </header>
 
         <div class="hero-content">
-          <h1 class="hero-title">Art Garden</h1>
-          <p class="hero-design-line">
-            <span class="line"></span>
-            <span class="design-word">Design</span>
-            <span class="line"></span>
-          </p>
-          <img src="assets/icons/ic-leaf-mini.svg" alt="" class="mini-leaf" aria-hidden="true" />
-          <p class="hero-tagline">Luxus. Harmonia. Az On kertje.</p>
-          <button class="cta quote-trigger" id="quoteCta" type="button">Ajanlatkeres <span class="arrow">&#8594;</span></button>
+          <h1 class="hero-title">
+            <span class="hero-line">Luxus.</span>
+            <span class="hero-line">Harmonia.</span>
+          </h1>
+          <p class="hero-tagline">Az On kertje.</p>
+          <button class="cta-button quote-trigger" id="quoteCta" type="button">AJÁNLATKÉRÉS <span class="arrow">→</span></button>
         </div>
       </section>
 
       <section class="services-sheet" id="services">
         <article class="service-card">
-          <button class="service-toggle" type="button" aria-expanded="false">
-            <img src="assets/icons/ic-landscape.svg" alt="Kertepites ikon" class="service-icon" />
-            <div class="service-copy">
-              <h2>Kertepites</h2>
-              <p>Egyedi kertek tervezese es kivitelezese</p>
+          <a href="kertepites.html" class="service-link">
+            <div class="service-icon-wrapper">
+              <svg class="service-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="35" fill="none" stroke="#d7ba81" stroke-width="1"/>
+                <path d="M25 50 Q25 35 35 25 Q40 30 45 25 Q55 35 55 50" stroke="#d7ba81" fill="none" stroke-width="1.5"/>
+                <path d="M35 50 L35 60 M45 50 L45 60" stroke="#d7ba81" stroke-width="1"/>
+              </svg>
             </div>
-            <span class="chevron" aria-hidden="true">&#8250;</span>
-          </button>
-          <div class="service-panel" aria-hidden="true">
-            <p>Egyedi koncepcio, 3D latvanyterv, novenyvalasztas, burkolatok, fenyek es kivitelezesi menetrend egy kezben.</p>
-          </div>
+            <div class="service-copy">
+              <h2>KERTÉPÍTÉS</h2>
+              <span class="service-divider" aria-hidden="true"></span>
+              <p>Egyedi kertek tervezese es kivitelezese.</p>
+            </div>
+            <span class="chevron" aria-hidden="true">→</span>
+          </a>
         </article>
 
         <article class="service-card">
-          <button class="service-toggle" type="button" aria-expanded="false">
-            <img src="assets/icons/ic-water.svg" alt="Automata ontozes ikon" class="service-icon" />
-            <div class="service-copy">
-              <h2>Automata Ontozes</h2>
-              <p>Okos ontozorendszerek telepitese</p>
+          <a href="automata-ontozes.html" class="service-link">
+            <div class="service-icon-wrapper">
+              <svg class="service-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="35" fill="none" stroke="#d7ba81" stroke-width="1"/>
+                <path d="M40 20 L40 50 M35 30 L45 30 M32 38 L48 38 M30 46 L50 46 M28 54 L52 54" stroke="#d7ba81" stroke-width="1.5"/>
+              </svg>
             </div>
-            <span class="chevron" aria-hidden="true">&#8250;</span>
-          </button>
-          <div class="service-panel" aria-hidden="true">
-            <p>Zonankent szabalyzott ontozes, idojaras alapu vezerles, szezonkezdo beallitas es rendszeres ellenorzes.</p>
-          </div>
+            <div class="service-copy">
+              <h2>AUTOMATA ÖNTÖZÉS</h2>
+              <span class="service-divider" aria-hidden="true"></span>
+              <p>Okos ontozorendszerek telepitese.</p>
+            </div>
+            <span class="chevron" aria-hidden="true">→</span>
+          </a>
         </article>
 
         <article class="service-card">
-          <button class="service-toggle" type="button" aria-expanded="false">
-            <img src="assets/icons/ic-pruning.svg" alt="Kertfenntartas ikon" class="service-icon" />
-            <div class="service-copy">
-              <h2>Kertfenntartas</h2>
-              <p>Rendszeres es szakszeru kertgondozas</p>
+          <a href="kertenntartas.html" class="service-link">
+            <div class="service-icon-wrapper">
+              <svg class="service-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="35" fill="none" stroke="#d7ba81" stroke-width="1"/>
+                <path d="M35 30 Q35 25 40 25 Q45 25 45 30 L45 35 Q45 40 40 42 Q35 40 35 35" stroke="#d7ba81" fill="none" stroke-width="1.5"/>
+                <path d="M38 45 L42 45 M38 50 L42 50 M38 55 L42 55" stroke="#d7ba81" stroke-width="1"/>
+              </svg>
             </div>
-            <span class="chevron" aria-hidden="true">&#8250;</span>
-          </button>
-          <div class="service-panel" aria-hidden="true">
-            <p>Fu, cserjek, sovenyek, talajtapanyag, betegsegmegelozes es heti vagy ketheti fenntartasi csomagok.</p>
-          </div>
+            <div class="service-copy">
+              <h2>KERTFENNTARTÁS</h2>
+              <span class="service-divider" aria-hidden="true"></span>
+              <p>Rendszeres es szakszeru kertgondozas.</p>
+            </div>
+            <span class="chevron" aria-hidden="true">→</span>
+          </a>
         </article>
 
         <article class="service-card">
-          <button class="service-toggle" type="button" aria-expanded="false">
-            <img src="assets/icons/ic-contact.svg" alt="Kapcsolat ikon" class="service-icon" />
+          <a href="kapcsolat.html" class="service-link">
+            <div class="service-icon-wrapper">
+              <svg class="service-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="35" fill="none" stroke="#d7ba81" stroke-width="1"/>
+                <circle cx="40" cy="35" r="8" fill="none" stroke="#d7ba81" stroke-width="1.5"/>
+                <path d="M32 48 Q32 45 40 45 Q48 45 48 48 L48 55 Q48 58 40 58 Q32 58 32 55" stroke="#d7ba81" fill="none" stroke-width="1.5"/>
+              </svg>
+            </div>
             <div class="service-copy">
-              <h2>Kapcsolat</h2>
+              <h2>KAPCSOLAT</h2>
+              <span class="service-divider" aria-hidden="true"></span>
               <p>Vegye fel velunk a kapcsolatot</p>
             </div>
-            <span class="chevron" aria-hidden="true">&#8250;</span>
-          </button>
-          <div class="service-panel" aria-hidden="true">
-            <p>Telefon, e-mail vagy helyszini konzultacio. 24 oran belul valaszolunk es szemelyre szabott ajanlatot adunk.</p>
-          </div>
+            <span class="chevron" aria-hidden="true">→</span>
+          </a>
         </article>
 
         <section class="trust-row" aria-label="Minosegi igeretek">

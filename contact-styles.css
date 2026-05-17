@@ -1,0 +1,134 @@
+.contact-info {
+  background: #f7f4ef;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.contact-info h2 {
+  margin: 0 0 1rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  color: #2f3328;
+}
+
+.contact-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.contact-method:last-child {
+  margin-bottom: 0;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+.contact-label {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2f3328;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.contact-detail {
+  margin: 0.3rem 0 0;
+  font-size: 1rem;
+  color: #3e433a;
+}
+
+.contact-form-section {
+  background: #f7f4ef;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form-section h2 {
+  margin: 0 0 1rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  color: #2f3328;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2f3328;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #d7cdba;
+  background: #fff;
+  padding: 0.6rem 0.8rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: #2f3328;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #a09080;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.contact-form button {
+  margin-top: 0.5rem;
+}
+
+.footer-info {
+  background: #f7f4ef;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.footer-info h3 {
+  margin: 0 0 0.8rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #2f3328;
+  font-weight: 600;
+}
+
+.footer-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #3e433a;
+  line-height: 1.8;
+}
+
+@media (min-width: 768px) {
+  .contact-info {
+    padding: 2rem;
+  }
+  
+  .contact-form-section {
+    padding: 2rem;
+  }
+  
+  .footer-info {
+    padding: 2rem;
+  }
+}

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kapcsolat | Art Garden Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="subpage-styles.css" />
+    <link rel="stylesheet" href="contact-styles.css" />
+  </head>
+  <body>
+    <main class="mobile-page">
+      <div class="subpage-header">
+        <a href="index.html" class="subpage-back">← Vissza</a>
+        <p class="subpage-breadcrumb">FŐOLDAL / KAPCSOLAT</p>
+      </div>
+
+      <section class="subpage-hero" style="background: linear-gradient(to top, rgba(18, 22, 12, 0.4) 12%, rgba(18, 22, 12, 0.1) 100%), url('background.png'); background-position: center; background-size: cover;">
+        <h1 class="subpage-title">Kapcsolat</h1>
+      </section>
+
+      <div class="subpage-content">
+        <section class="contact-info">
+          <h2>Irjon nekunk</h2>
+          <div class="contact-method">
+            <span class="contact-icon">📱</span>
+            <div>
+              <p class="contact-label">Telefon</p>
+              <p class="contact-detail">+36 20 123 4567</p>
+            </div>
+          </div>
+          <div class="contact-method">
+            <span class="contact-icon">✉</span>
+            <div>
+              <p class="contact-label">E-mail</p>
+              <p class="contact-detail">info@artgarden.hu</p>
+            </div>
+          </div>
+          <div class="contact-method">
+            <span class="contact-icon">📍</span>
+            <div>
+              <p class="contact-label">Helyszin</p>
+              <p class="contact-detail">Budapest, Magyarorszag</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="contact-form-section">
+          <h2>Vagy kuldjel uzenetett</h2>
+          <form class="contact-form">
+            <label>
+              Teljes nev
+              <input type="text" name="fullname" required />
+            </label>
+            <label>
+              E-mail cim
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Telefon
+              <input type="tel" name="phone" />
+            </label>
+            <label>
+              Uzenet
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+            <button type="submit" class="cta">UZENET KULDESE</button>
+          </form>
+        </section>
+
+        <section class="footer-info">
+          <h3>Elerheto</h3>
+          <p>Hetfo-Pente: 08:00 - 18:00<br />
+          Szombat: 10:00 - 14:00<br />
+          Vasarnap: Zarva</p>
+        </section>
+      </div>
+    </main>
+
+    <div class="quote-modal" id="quoteModal" aria-hidden="true">
+      <div class="quote-modal-backdrop" data-close="modal"></div>
+      <section class="quote-dialog" role="dialog" aria-modal="true" aria-labelledby="quoteTitle">
+        <header class="quote-dialog-head">
+          <h2 id="quoteTitle">Ajanlatkeres</h2>
+          <button class="quote-close" id="quoteClose" type="button" aria-label="Ajanlatkeres bezarasa">&times;</button>
+        </header>
+
+        <form class="quote-form" id="quoteForm">
+          <label>
+            Nev
+            <input id="quoteName" name="name" type="text" required />
+          </label>
+          <label>
+            Email
+            <input id="quoteEmail" name="email" type="email" required />
+          </label>
+          <label>
+            Telefonszam
+            <input id="quotePhone" name="phone" type="tel" required />
+          </label>
+          <label>
+            Leiras
+            <textarea id="quoteDescription" name="description" rows="4" required></textarea>
+          </label>
+          <label>
+            Kertezes kepek feltoltese (max 8 kep)
+            <input id="quoteImages" name="images" type="file" accept="image/*" multiple />
+          </label>
+
+          <div class="quote-preview" id="quotePreview"></div>
+          <p class="quote-note">Adatait helyben is mentjuk piszkozatkent, kuldeskor az ajanlatkeres Firestore-ba kerul, a kepek pedig a keres sajat Firestore kepek almappajaba is.</p>
+          <p class="quote-status" id="quoteStatus" aria-live="polite"></p>
+
+          <button id="quoteSubmit" type="submit">Keres kuldese</button>
+        </form>
+      </section>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

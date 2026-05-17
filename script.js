@@ -22,7 +22,6 @@ import {
 const quoteTriggers = document.querySelectorAll(".quote-trigger");
 const hamburgerButton = document.getElementById("hamburgerButton");
 const serviceCards = document.querySelectorAll(".service-card");
-const serviceToggles = document.querySelectorAll(".service-toggle");
 const hero = document.querySelector(".hero");
 
 const quoteModal = document.getElementById("quoteModal");
@@ -308,21 +307,6 @@ window.addEventListener("scroll", onScroll, { passive: true });
 
 hamburgerButton?.addEventListener("click", () => {
   hamburgerButton.classList.toggle("is-open");
-});
-
-serviceToggles.forEach((toggle) => {
-  toggle.addEventListener("click", () => {
-    const card = toggle.closest(".service-card");
-    const panel = card?.querySelector(".service-panel");
-
-    if (!card || !panel) {
-      return;
-    }
-
-    const isOpen = card.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
-    panel.setAttribute("aria-hidden", String(!isOpen));
-  });
 });
 
 serviceCards.forEach((card) => {

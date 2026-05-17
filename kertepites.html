@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kertépítés | Art Garden Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="subpage-styles.css" />
+  </head>
+  <body>
+    <main class="mobile-page">
+      <div class="subpage-header">
+        <a href="index.html" class="subpage-back">← Vissza</a>
+        <p class="subpage-breadcrumb">FŐOLDAL / KERTÉPÍTÉS</p>
+      </div>
+
+      <section class="subpage-hero" style="background: linear-gradient(to top, rgba(18, 22, 12, 0.4) 12%, rgba(18, 22, 12, 0.1) 100%), url('background.png'); background-position: center; background-size: cover;">
+        <h1 class="subpage-title">Kertépítés</h1>
+      </section>
+
+      <div class="subpage-content">
+        <section class="intro-section">
+          <h2>A kert, ami az elet ihletre husaz</h2>
+          <p>Nem egyszeroen kertekel epitenek, olyan tereket alkonak, ahol szeretekalkotunk es vidlt tolten.</p>
+          <p>Hiperszem, megjelennent es idot tolten.</p>
+        </section>
+
+        <div class="subpage-image" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2)), url('background.png'); background-position: center; background-size: cover; height: 220px; border-radius: 12px; margin: 1.5rem 0;"></div>
+
+        <section class="details-section">
+          <h3>A kert, ami az On elemi igazin</h3>
+          <p>Egyedi koncepcio, 3D latvanyterv, novenyvalasztas, burkolatok, fenyek es kivitelezesi menetrend egy kezben.
+          </p>
+          <p>A tervezestol a vegkertig vagyunk veled. Gondosan meghallgatjuk az igenyeidet, majd tervet keszitunk, amely megfelel az odasodnak a teleknek es a konyvtarlosnak.</p>
+        </section>
+
+        <section class="features-grid">
+          <div class="feature-item">
+            <img src="assets/icons/ic-landscape.svg" alt="Terv" class="feature-icon" />
+            <p>Terv</p>
+          </div>
+          <div class="feature-item">
+            <img src="assets/icons/ic-harmony.svg" alt="Harmonia" class="feature-icon" />
+            <p>Harmonia</p>
+          </div>
+          <div class="feature-item">
+            <img src="assets/icons/ic-shield.svg" alt="Minoseg" class="feature-icon" />
+            <p>Minőség</p>
+          </div>
+          <div class="feature-item">
+            <img src="assets/icons/ic-badge.svg" alt="Szakertelem" class="feature-icon" />
+            <p>Szakértelem</p>
+          </div>
+          <div class="feature-item">
+            <img src="assets/icons/ic-water.svg" alt="Ososztosztes" class="feature-icon" />
+            <p>Vízgazdálkodás</p>
+          </div>
+        </section>
+
+        <div class="cta-section">
+          <p>Keszitsunk el egyutt az On alomkertjet.</p>
+          <button class="cta quote-trigger" type="button">KÉRJEN AJÁNLATOT</button>
+        </div>
+      </div>
+    </main>
+
+    <div class="quote-modal" id="quoteModal" aria-hidden="true">
+      <div class="quote-modal-backdrop" data-close="modal"></div>
+      <section class="quote-dialog" role="dialog" aria-modal="true" aria-labelledby="quoteTitle">
+        <header class="quote-dialog-head">
+          <h2 id="quoteTitle">Ajanlatkeres</h2>
+          <button class="quote-close" id="quoteClose" type="button" aria-label="Ajanlatkeres bezarasa">&times;</button>
+        </header>
+
+        <form class="quote-form" id="quoteForm">
+          <label>
+            Nev
+            <input id="quoteName" name="name" type="text" required />
+          </label>
+          <label>
+            Email
+            <input id="quoteEmail" name="email" type="email" required />
+          </label>
+          <label>
+            Telefonszam
+            <input id="quotePhone" name="phone" type="tel" required />
+          </label>
+          <label>
+            Leiras
+            <textarea id="quoteDescription" name="description" rows="4" required></textarea>
+          </label>
+          <label>
+            Kertezes kepek feltoltese (max 8 kep)
+            <input id="quoteImages" name="images" type="file" accept="image/*" multiple />
+          </label>
+
+          <div class="quote-preview" id="quotePreview"></div>
+          <p class="quote-note">Adatait helyben is mentjuk piszkozatkent, kuldeskor az ajanlatkeres Firestore-ba kerul, a kepek pedig a keres sajat Firestore kepek almappajaba is.</p>
+          <p class="quote-status" id="quoteStatus" aria-live="polite"></p>
+
+          <button id="quoteSubmit" type="submit">Keres kuldese</button>
+        </form>
+      </section>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
