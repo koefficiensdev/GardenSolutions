@@ -14,6 +14,22 @@
   </head>
   <body>
     <main class="mobile-page">
+      <header class="site-header" aria-label="Fo navigacio">
+        <a class="site-brand" href="index.html">ArtGarden</a>
+        <nav class="site-menu" aria-label="Asztali menu">
+          <div class="site-menu-item has-dropdown">
+            <button class="site-menu-trigger" type="button" aria-expanded="false">Szolgaltatasok</button>
+            <div class="site-dropdown" role="menu" aria-label="Szolgaltatasok">
+              <a role="menuitem" href="kertepites.html">Kertepites</a>
+              <a role="menuitem" href="automata-ontozes.html">Automata ontozes</a>
+              <a role="menuitem" href="kertenntartas.html">Kertfenntartas</a>
+            </div>
+          </div>
+          <a href="rolunk.html">Rolunk</a>
+          <a href="kapcsolat.html">Kapcsolat</a>
+        </nav>
+      </header>
+
       <section class="hero" aria-label="Art Garden bevezető">
         <div class="hero-overlay" aria-hidden="true"></div>
         
@@ -30,10 +46,19 @@
               <span class="logo-design">DESIGN</span>
             </div>
           </a>
-          <button class="hamburger" id="hamburgerButton" type="button" aria-label="Menu megnyitasa">
+          <button class="hamburger" id="hamburgerButton" type="button" aria-label="Menu megnyitasa" aria-controls="mobileMenu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
         </header>
+
+        <nav class="mobile-menu" id="mobileMenu" aria-hidden="true" aria-label="Mobil menu">
+          <a class="mobile-menu-main" href="rolunk.html">Rolunk</a>
+          <a class="mobile-menu-main" href="kapcsolat.html">Kapcsolat</a>
+          <p class="mobile-menu-label">Szolgaltatasok</p>
+          <a href="kertepites.html">Kertepites</a>
+          <a href="automata-ontozes.html">Automata ontozes</a>
+          <a href="kertenntartas.html">Kertfenntartas</a>
+        </nav>
 
         <div class="hero-content">
           <h1 class="hero-title">

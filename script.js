@@ -21,6 +21,7 @@ import {
 
 const quoteTriggers = document.querySelectorAll(".quote-trigger");
 const hamburgerButton = document.getElementById("hamburgerButton");
+const mobileMenu = document.getElementById("mobileMenu");
 const serviceCards = document.querySelectorAll(".service-card");
 const hero = document.querySelector(".hero");
 
@@ -305,8 +306,38 @@ function onScroll() {
 }
 window.addEventListener("scroll", onScroll, { passive: true });
 
+function setMobileMenuState(isOpen) {
+  if (!hamburgerButton || !mobileMenu) {
+    return;
+  }
+
+  hamburgerButton.classList.toggle("is-open", isOpen);
+  hamburgerButton.setAttribute("aria-expanded", String(isOpen));
+  mobileMenu.classList.toggle("is-open", isOpen);
+  mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+}
+
 hamburgerButton?.addEventListener("click", () => {
-  hamburgerButton.classList.toggle("is-open");
+  const shouldOpen = !hamburgerButton.classList.contains("is-open");
+  setMobileMenuState(shouldOpen);
+});
+
+mobileMenu?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    setMobileMenuState(false);
+  });
+});
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    setMobileMenuState(false);
+  }
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth >= 980) {
+    setMobileMenuState(false);
+  }
 });
 
 serviceCards.forEach((card) => {
